@@ -122,16 +122,19 @@ bool insert(Node*& root, int nilai) {
 // =============================================================================
 
 const Node* cari(const Node* root, int nilai) {
-    if(root->data == nilai){
-        return root;
-    }else{
-        if(nilai < root->data){
-            return cari(root->left, nilai);
-        }else if(nilai > root->data){
-            return cari(root->right, nilai);
-        }
+    if (root == nullptr) {
+        return nullptr;
     }
-    return nullptr;
+
+    if (nilai == root->data) {
+        return root;
+    }
+
+    if (nilai < root->data) {
+        return cari(root->left, nilai);
+    }
+
+    return cari(root->right, nilai);
 }
 
 // =============================================================================
@@ -164,6 +167,9 @@ const Node* cari(const Node* root, int nilai) {
 // =============================================================================
 
 const Node* minimum(const Node* root) {
+    if (root == nullptr) {
+        return nullptr;
+    }
     if(root->left != nullptr){
         return minimum(root->left);
     }else if(root->left == nullptr){
